@@ -1,6 +1,6 @@
-NYU HPC HW2.
-Mu-Hua Chien 
-mhc431@nyu.edu
+# NYU HPC HW2.
+## Mu-Hua Chien 
+## mhc431@nyu.edu
 
 Part 1, Fixed omp_bug's' 
 
