@@ -2,16 +2,21 @@ Fixed omp_bug's'
 
 omp_bug2: 
 
-(i) tid is private variable, so it should be defined in the omp region.
+(i) "tid" is private variable, so it should be defined in the omp region.
+
 (ii) To compute the total with imax = 1000000, we need double precision to save the information. Moreover, we need to apply reduction(+:total) in the omp for, where total is shared by default. 
 
 omp_bug3: 
 
-There is a barrier in a function, where only the thread doing the section can see this barrier. Therefore, the thread will stop to wait other threads arrive. However, none of the thread can see the barrier and it will be hang there.
+There is a barrier written in a function, where only the thread doing the section can see this barrier. The thread will stop to wait other threads arrive. However, none of the thread can see the barrier and it will be hang there.
+
+The barrier in the section is deleted. 
 
 omp_bug4:
 
-Since the 2D array is initialized with pointer. It will cause conflict if all the processors use the pointer at the same time. Therefore, the initialization should be located inbetween the parallel region, so that they can use the pointers priviately.
+Since the 2D array is initialized with pointer. It will cause conflict if all the processors use the pointer at the same time. 
+
+To fix the bug, the initialization is relocated inbetween the parallel region, so that they can use the pointers priviately.
 
 omp_bug5:
 
