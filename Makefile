@@ -1,4 +1,4 @@
-CC=gcc-6
+CC=gcc
 CFLAGS= -fopenmp -O3
 
 all: omp_bug2 omp_bug3 omp_bug4 omp_bug5 omp_bug6 Jacobi2D-omp gs2D-omp 
