@@ -1,6 +1,6 @@
-# NYU HPC HW2.
-## Mu-Hua Chien 
-## mhc431@nyu.edu
+## NYU HPC HW2.
+### Mu-Hua Chien 
+### mhc431@nyu.edu
 
 Part 1, Fixed omp_bug's' 
 
@@ -46,7 +46,9 @@ Test with CIMS login node (AMD Opteron 23xx (Gen 3 Class Opteron))
 For N = 1000, with 1000 iteration
 
 Execute with 1 thread, residual = 9.505277e+02, Time elapsed is 20.354608 secs.
+
 Execute with 4 thread, residual = 9.505277e+02, Time elapsed is 8.554077 secs.
+
 Execute with 8 thread, residual = 9.505277e+02, Time elapsed is 9.271495 secs.
 
 Note that the initial residual is 1.000000e+03.
@@ -54,7 +56,9 @@ Note that the initial residual is 1.000000e+03.
 For N = 2000, with 1000 iteration
 
 Execute with 1 thread, residual = 1.950528e+03, Time elapsed is 75.341859 secs.
+
 Execute with 4 thread, residual = 1.950528e+03, Time elapsed is 36.675188 secs.
+
 Execute with 8 thread, residual = 1.950528e+03, Time elapsed is 37.324939 secs.
 
 Note that the initial residual is 2.000000e+03.
@@ -66,7 +70,9 @@ Test with CIMS login node (AMD Opteron 23xx (Gen 3 Class Opteron))
 For N = 1000, with 1000 iteration
 
 Execute with 1 thread, residual = 1.314705e+03, Time elapsed is 22.444311 secs.
+
 Execute with 4 thread, residual = 1.314705e+03, Time elapsed is 8.817971 secs.
+
 Execute with 8 thread, residual = 1.314705e+03, Time elapsed is 8.681636 secs.
 
 Note that the initial residual is 1.412548e+03.
@@ -74,7 +80,9 @@ Note that the initial residual is 1.412548e+03.
 For N = 2000, with 1000 iteration
 
 Execute with 1 thread, residual = 2.728919e+03, Time elapsed is 82.328207 secs.
+
 Execute with 4 thread, residual = 2.728919e+03, Time elapsed is 34.153191 secs.
+
 Execute with 8 thread, residual = 2.728919e+03, Time elapsed is 35.205348 secs.
 
 Note that the initial residual is 2.826761e+03.
