@@ -79,11 +79,11 @@ Note that the initial residual is 1.412548e+03.
 
 For N = 2000, with 1000 iteration
 
-Execute with 1 thread, residual = 2.728919e+03, Time elapsed is 82.328207 secs.
+Execute with 1 thread, residual = 2.728919e+03, Time elapsed is 82.328207 secs.  
 
-Execute with 4 thread, residual = 2.728919e+03, Time elapsed is 34.153191 secs.
+Execute with 4 thread, residual = 2.728919e+03, Time elapsed is 34.153191 secs.  
 
-Execute with 8 thread, residual = 2.728919e+03, Time elapsed is 35.205348 secs.
+Execute with 8 thread, residual = 2.728919e+03, Time elapsed is 35.205348 secs.  
 
 Note that the initial residual is 2.826761e+03.
 
