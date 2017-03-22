@@ -11,14 +11,14 @@
 
 int main (int argc, char *argv[]) 
 {
-int nthreads, i, tid;
-float total;
+int nthreads, i;
+double total;
 
 /*** Spawn parallel region ***/
 #pragma omp parallel 
   {
   /* Obtain thread number */
-  tid = omp_get_thread_num();
+  int tid = omp_get_thread_num();
   /* Only master thread does this */
   if (tid == 0) {
     nthreads = omp_get_num_threads();
@@ -30,7 +30,7 @@ float total;
 
   /* do some work */
   total = 0.0;
-  #pragma omp for schedule(dynamic,10)
+  #pragma omp for schedule(dynamic,10) reduction(+:total)
   for (i=0; i<1000000; i++) 
      total = total + i*1.0;
 

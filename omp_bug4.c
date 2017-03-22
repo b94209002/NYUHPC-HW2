@@ -13,7 +13,7 @@
 int main (int argc, char *argv[]) 
 {
 int nthreads, tid, i, j;
-double a[N][N];
+double **a;
 
 /* Fork a team of threads with explicit variable scoping */
 #pragma omp parallel shared(nthreads) private(i,j,tid,a)
@@ -27,6 +27,13 @@ double a[N][N];
     printf("Number of threads = %d\n", nthreads);
     }
   printf("Thread %d starting...\n", tid);
+
+        a = malloc(N * sizeof(double *));
+        for(i = 0; i < N; i++)
+        {
+                a[i] = malloc(N * sizeof(double));
+        }
+
 
   /* Each thread works on its own private copy of the array */
   for (i=0; i<N; i++)
