@@ -1,4 +1,8 @@
-Fixed omp_bug's' 
+NYU HPC HW2.
+Mu-Hua Chien 
+mhc431@nyu.edu
+
+Part 1, Fixed omp_bug's' 
 
 omp_bug2: 
 
@@ -31,6 +35,9 @@ omp_bug6:
 The omp must be defined either in the function "dotprod" or the "main" function. 
 
 Therefore, I delete the omp in the "main" and apply the omp in the function "dotprod".
+
+
+Part 2, Jacobi and Gauss-Seidel iteration with openmp
 
 jacobi2D-omp:
 
