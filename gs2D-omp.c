@@ -86,7 +86,7 @@ int main (int argc, char **argv)
         #pragma omp for schedule(dynamic,10)
 		for (j = 1; j < m1; j++) {
 			for (i = 1; i < m1; i++) {
-				if (rb[j][i] == 1) {
+				if (rb[j][i] == 0) {
 				x[j][i] = .25*( rhs*h*h + x[j-1][i]+ x[j][i-1] + x[j][i+1]+ x[j+1][i]);
 				}	
 			}
@@ -95,7 +95,7 @@ int main (int argc, char **argv)
         #pragma omp for schedule(dynamic,10)
                 for (j = 1; j < m1; j++) {
                         for (i = 1; i < m1; i++) {
-				if (rb[j][i]== 0){
+				if (rb[j][i]== 1){
                                 x[j][i] = .25*( rhs*h*h + x[j-1][i]+ x[j][i-1] + x[j][i+1]+ x[j+1][i]);
                         	}	
 			}
@@ -110,7 +110,7 @@ int main (int argc, char **argv)
                 }
 
 	rres = sqrt(res);
-	//	if (myid == 0 )
+		if (myid == 0 )
 	 printf("myid = %i, niter = %li, residul = %10e \n",myid, n, sqrt(res));		
 	}
 
