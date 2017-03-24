@@ -4,7 +4,9 @@ with criterion 10^-4 to initial residual */
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#ifdef _OPENMP
 #include <omp.h>
+#endif
 #include "util.h"
 double residual(int m, double h2, double **x, double rhs);
 
@@ -62,11 +64,12 @@ int main (int argc, char **argv)
 
   	timestamp_type time1, time2;
   	get_timestamp(&time1);
-	
+	int myid = 0;
 	#pragma omp parallel shared(x,rb,m,m1,m2,h,h2,rhs,crit,maxiter) private(n,i,j,tmp,rres)
 	{
-  	int myid = omp_get_thread_num();
-
+#ifdef _OPENMP
+  	myid = omp_get_thread_num();
+#endif
         res = 0.0; // boundary condition on (0)
 	#pragma omp barrier
 	#pragma omp for schedule(dynamic,10) reduction(+:res)

@@ -3,7 +3,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#ifdef _OPENMP
 #include <omp.h>
+#endif
 #include "util.h"
 double residual(int m, double h2, double **x, double rhs);
 
@@ -46,11 +48,12 @@ int main (int argc, char **argv)
 	}
   	timestamp_type time1, time2;
   	get_timestamp(&time1);
-	
+	int myid = 0;	
 	#pragma omp parallel shared(x,x0,m,m1,m2,h,h2,rhs,crit,maxiter) private(n,i,j,tmp,rres)
 	{
-  	int myid = omp_get_thread_num();
-
+#ifdef _OPENMP
+  	myid = omp_get_thread_num();
+#endif
         res = 0.0; // boundary condition on (0)
 	#pragma omp barrier
 	#pragma omp for schedule(dynamic,10) reduction(+:res)
@@ -61,7 +64,7 @@ int main (int argc, char **argv)
         		}
 		}
 	rres = sqrt(res); crit = 1.e-4*rres; 
-        printf("myid = %li, residul = %10e \n", myid, rres);
+//        printf("myid = %li, residul = %10e \n", myid, rres);
 	while (n < maxiter && rres > crit ) {
 	n++ ; res = 0.0;
 	#pragma omp barrier
