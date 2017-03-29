@@ -4,7 +4,9 @@ with criterion 10^-4 to initial residual */
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#ifdef _OPENMP
 #include <omp.h>
+#endif
 #include "util.h"
 double residual(int m, double h2, double **x, double rhs);
 
@@ -25,11 +27,12 @@ int main (int argc, char **argv)
 
         a = 0;
         b = 1;
-	m = atol(argv[1]);
+//	m = atol(argv[1]);
+        m = 100;
 	m2 = m+2 ;
 	m1 = m+1 ;
-	maxiter = atol(argv[2]);
-
+// 	maxiter = atol(argv[2]);
+        maxiter  = 100;
 	x = malloc(m2 * sizeof(double *));
         rb = malloc(m2 * sizeof(int *));
 	for(i = 0; i < m2; i++)
@@ -62,11 +65,12 @@ int main (int argc, char **argv)
 
   	timestamp_type time1, time2;
   	get_timestamp(&time1);
-	
+	int myid = 0;
 	#pragma omp parallel shared(x,rb,m,m1,m2,h,h2,rhs,crit,maxiter) private(n,i,j,tmp,rres)
 	{
-  	int myid = omp_get_thread_num();
-
+#ifdef _OPENMP
+  	myid = omp_get_thread_num();
+#endif
         res = 0.0; // boundary condition on (0)
 	#pragma omp barrier
 	#pragma omp for schedule(dynamic,10) reduction(+:res)
@@ -86,7 +90,7 @@ int main (int argc, char **argv)
         #pragma omp for schedule(dynamic,10)
 		for (j = 1; j < m1; j++) {
 			for (i = 1; i < m1; i++) {
-				if (rb[j][i] == 1) {
+				if (rb[j][i] == 0) {
 				x[j][i] = .25*( rhs*h*h + x[j-1][i]+ x[j][i-1] + x[j][i+1]+ x[j+1][i]);
 				}	
 			}
@@ -95,7 +99,7 @@ int main (int argc, char **argv)
         #pragma omp for schedule(dynamic,10)
                 for (j = 1; j < m1; j++) {
                         for (i = 1; i < m1; i++) {
-				if (rb[j][i]== 0){
+				if (rb[j][i]== 1){
                                 x[j][i] = .25*( rhs*h*h + x[j-1][i]+ x[j][i-1] + x[j][i+1]+ x[j+1][i]);
                         	}	
 			}
@@ -110,7 +114,7 @@ int main (int argc, char **argv)
                 }
 
 	rres = sqrt(res);
-	//	if (myid == 0 )
+		if (myid == 0 )
 	 printf("myid = %i, niter = %li, residul = %10e \n",myid, n, sqrt(res));		
 	}
 

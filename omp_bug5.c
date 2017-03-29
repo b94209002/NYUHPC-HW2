@@ -50,7 +50,7 @@ omp_init_lock(&lockb);
       printf("Thread %d adding a[] to b[]\n",tid);
       for (i=0; i<N; i++)
         b[i] += a[i];
-      omp_unset_lock(&lockb);
+      omp_unset_lock(&locka);
       }
 
     #pragma omp section
