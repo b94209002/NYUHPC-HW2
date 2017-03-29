@@ -25,10 +25,12 @@ int main (int argc, char **argv)
 
         a = 0;
         b = 1;
-	m = atol(argv[1]);
+//	m = atol(argv[1]);
+        m = 100;
 	m2 = m+2 ;
 	m1 = m+1 ;
-	maxiter = atol(argv[2]);
+        maxiter = 100;
+//	maxiter = atol(argv[2]);
 
 	x = malloc(m2 * sizeof(double *));
         x0 = malloc(m2 * sizeof(double *));

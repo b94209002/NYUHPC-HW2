@@ -27,11 +27,12 @@ int main (int argc, char **argv)
 
         a = 0;
         b = 1;
-	m = atol(argv[1]);
+//	m = atol(argv[1]);
+        m = 100;
 	m2 = m+2 ;
 	m1 = m+1 ;
-	maxiter = atol(argv[2]);
-
+// 	maxiter = atol(argv[2]);
+        maxiter  = 100;
 	x = malloc(m2 * sizeof(double *));
         rb = malloc(m2 * sizeof(int *));
 	for(i = 0; i < m2; i++)
