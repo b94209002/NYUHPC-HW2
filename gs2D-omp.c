@@ -20,10 +20,6 @@ int main (int argc, char **argv)
   long m, m2,m1, maxiter, n = 0;// size, max iteration, iteration index
   double crit; // critera 
 
-  if (argc != 3) {
-    fprintf(stderr, "Function needs vector size and number of passes as input arguments!\n");
-    abort();
-  }
 
         a = 0;
         b = 1;
@@ -65,8 +61,8 @@ int main (int argc, char **argv)
 
   	timestamp_type time1, time2;
   	get_timestamp(&time1);
-	int myid = 0;
-	#pragma omp parallel shared(x,rb,m,m1,m2,h,h2,rhs,crit,maxiter) private(n,i,j,tmp,rres)
+	int myid = 0; 
+	#pragma omp parallel shared(x,rb,m,m1,m2,h,h2,rhs,maxiter) private(myid,n,i,j,tmp,rres,crit)
 	{
 #ifdef _OPENMP
   	myid = omp_get_thread_num();
@@ -82,6 +78,8 @@ int main (int argc, char **argv)
 		}
 	rres = sqrt(res); crit = 1.e-4*rres; 
         printf("myid = %li, residul = %10e \n", myid, rres);
+
+        n = 0;
 	while (n < maxiter && rres > crit ) {
 	n++ ; 
 	#pragma omp barrier
